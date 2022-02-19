@@ -1,0 +1,45 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3366/blog?serverTimezone=Asia/Seoul
+    username: yoohyun
+    password: yoohyun1234
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      # create일 경우 프로젝트 실행마다 테이블을 생성하므로 데이터가 있을 경우 
+      # 모두 삭제된 후 재생성된다. 그러므로 생성했다면 update 변경 필수
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+      # 위 false는 JPA의 기본 넘버링(시퀀스나 auto_increment 같은) 전략을 따라가지 않겠다는 뜻.
+    #show-sql: true
+    # show-sql이 true일 경우 Console 창에 내용이 찍힌다.
+    # 없다면 당연히 보이지 않음.
+    properties:
+      hibernate.format_sql: true
+      # hibernate.format_sql이 없을 경우 sql 생성문이 한줄로 가독성이 매우
+      # 나쁘다. 그러므로 show-sql을 true로 사용할 경우 함께 쓰는 것이 좋다.
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+cos:
+  key: cos1234
